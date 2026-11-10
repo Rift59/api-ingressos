@@ -1,0 +1,16 @@
+{
+    "name": "projeto/api-ingressos",
+    "description": "API de reservas de ingressos com controle de concorrencia",
+    "type": "project",
+    "require": {
+        "php": "^8.3",
+        "ext-pdo": "*",
+        "ext-pdo_mysql": "*",
+        "firebase/php-jwt": "^7.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    }
+}

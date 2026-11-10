@@ -1,0 +1,10 @@
+
+RewriteEngine On
+
+# Repassa o token JWT para o PHP
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+# Evita servir arquivos internos por engano.
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.php [QSA,L]

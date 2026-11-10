@@ -1,0 +1,41 @@
+services:
+  app:
+    build: .
+    container_name: api_ingressos
+    ports:
+      - "8080:80"
+    environment:
+      APP_ENV: ${APP_ENV:-production}
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_DATABASE: ${DB_DATABASE:-ingressos}
+      DB_USERNAME: ${DB_USERNAME:-api_user}
+      DB_PASSWORD: ${DB_PASSWORD:-senha_api_123}
+      JWT_SECRET: ${JWT_SECRET:-troque-esta-chave-por-uma-chave-forte-com-mais-de-32-caracteres}
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+
+  db:
+    image: mysql:8.0
+    container_name: mysql_ingressos
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-root_123}
+      MYSQL_DATABASE: ${DB_DATABASE:-ingressos}
+      MYSQL_USER: ${DB_USERNAME:-api_user}
+      MYSQL_PASSWORD: ${DB_PASSWORD:-senha_api_123}
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./database/init.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -uroot -p\"$${MYSQL_ROOT_PASSWORD}\" --silent"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+    restart: unless-stopped
+
+volumes:
+  mysql_data:
