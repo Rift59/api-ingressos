@@ -1,5 +1,10 @@
 # API sob Alta Demanda — PHP + MySQL
 
+## ALUNOS   
+ítalo firmino
+Tiago Cabral
+
+
 API REST para gerenciar 100 ingressos de um show, com limite de 2 reservas ativas por usuário.
 
 ## Requisitos
