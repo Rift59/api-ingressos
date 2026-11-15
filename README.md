@@ -49,7 +49,7 @@ No PowerShell:
 
 ```powershell
 Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
-.\teste-api.ps1
+.\testes-api.ps1
 ```
 
 ## Encerrar o projeto
