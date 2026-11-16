@@ -42,7 +42,7 @@ Acesse:
 
 http://localhost:8080/health
 
-Resposta esperada:
+Resposta:
 
 ```json
 {"status":"OK","database":"CONNECTED"}
